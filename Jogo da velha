@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table {
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+      }
+      td {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid black;
+      }
+      .circle {
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        background-color: green;
+        display: inline-block;
+      }
+      .cross {
+        width: 80px;
+        height: 80px;
+        display: inline-block;
+      }
+      .cross:before,
+      .cross:after {
+        content: "";
+        position: absolute;
+        top: 40px;
+        left: 10px;
+        right: 10px;
+        width: 80px;
+        height: 1px;
+        background-color: red;
+      }
+      .cross:before {
+        transform: rotate(45deg);
+      }
+      .cross:after {
+        transform: rotate(-45deg);
+      }
+    </style>
+  </head>
+  <body>
+    <table id="board">
+      <tr>
+        <td id="cell-0"></td>
+        <td id="cell-1"></td>
+        <td id="cell-2"></td>
+      </tr>
+      <tr>
+        <td id="cell-3"></td>
+        <td id="cell-4"></td>
+        <td id="cell-5"></td>
+      </tr>
+      <tr>
+        <td id="cell-6"></td>
+        <td id="cell-7"></td>
+        <td id="cell-8"></td>
+      </tr>
+    </table>
+    <script>
+      const cells = document.querySelectorAll("td");
+      let currentPlayer = "circle";
+      for (let i = 0; i < cells.length; i++) {
+        cells[i].addEventListener("click", function() {
+          if (!this.innerHTML) {
+            if (currentPlayer === "circle") {
+              this.innerHTML = `<div class="circle"></div>`;
+              currentPlayer = "cross";
+            } else {
+              this.innerHTML = `<div class="cross"></div>`;
+              currentPlayer = "circle";
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
